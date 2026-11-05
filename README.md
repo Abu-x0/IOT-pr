@@ -66,7 +66,8 @@ its 46-day plot-B trial).
 2. Press **▶ Start the simulation**.
 3. Watch the Serial monitor; the trial finishes at slot 28.
 
-Live project: `https://wokwi.com/projects/477678407076745217`
+- Live project: `https://wokwi.com/projects/477678407076745217`
+- Live data (public ThingSpeak channel): `https://thingspeak.mathworks.com/channels/3532920`
 
 ## Expected result
 
