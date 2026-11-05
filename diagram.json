@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "author": "ELC4015 IoT soil moisture probe",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "pot15", "top": -150, "left": -200, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "pot30", "top": -150, "left": -100, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "pot45", "top": -150, "left": 0, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "pot60", "top": -150, "left": 100, "attrs": {} },
+    { "type": "wokwi-resistor", "id": "r1", "top": 150, "left": 120, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "led1", "top": 190, "left": 200, "attrs": { "color": "blue", "label": "Irrigate" } }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+
+    [ "pot15:VCC", "esp:3V3", "red", [ "v20", "h-60" ] ],
+    [ "pot30:VCC", "esp:3V3", "red", [ "v20", "h-60" ] ],
+    [ "pot45:VCC", "esp:3V3", "red", [ "v20", "h-60" ] ],
+    [ "pot60:VCC", "esp:3V3", "red", [ "v20", "h-60" ] ],
+
+    [ "pot15:GND", "esp:GND.1", "black", [ "v30" ] ],
+    [ "pot30:GND", "esp:GND.1", "black", [ "v30" ] ],
+    [ "pot45:GND", "esp:GND.1", "black", [ "v30" ] ],
+    [ "pot60:GND", "esp:GND.1", "black", [ "v30" ] ],
+
+    [ "pot15:SIG", "esp:32", "green", [ "v40" ] ],
+    [ "pot30:SIG", "esp:33", "orange", [ "v40" ] ],
+    [ "pot45:SIG", "esp:34", "blue", [ "v40" ] ],
+    [ "pot60:SIG", "esp:35", "purple", [ "v40" ] ],
+
+    [ "esp:26", "r1:1", "gold", [ "h0" ] ],
+    [ "r1:2", "led1:A", "gold", [ "v0" ] ],
+    [ "led1:C", "esp:GND.2", "black", [ "v20" ] ]
+  ],
+  "dependencies": {}
+}
