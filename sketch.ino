@@ -1,29 +1,3 @@
-/*
-  Wokwi simulation of the CIHEAM Bari smart-irrigation node
-  (Abdelmoneim et al., Sensors 2025, 25, 1568)
-
-  What follows the paper:
-    - ESP32 + 4 capacitive probes on GPIO 32-35 (depths 15/30/45/60 cm)
-    - Wake every 6 h, 30 s Wi-Fi timeout, upload to ThingSpeak
-    - Plot B rule: keep the 15 cm sensor between 0.25 and 0.30 m3/m3
-    - Rain on 3 May (14.75 mm) and 7 May (11.33 mm); 7-day trial
-
-  What is MY assumption (state this in the report):
-    - Soil drying rates, rain/irrigation response, ADC-to-VWC mapping
-    - Drying/irrigation gains calibrated to the paper's rate of ~0.5 irrigation
-      events per day (24 events over its 46-day plot B trial)
-    - Automatic pump/valve: the paper used MANUAL valves; the LED only
-      shows when the 15 cm rule says "irrigate"
-
-  Time scaling: one loop = one 6 h slot in the model. Real wait between slots
-  is SLEEP_SECONDS (ThingSpeak free tier needs >= 15 s between updates).
-
-  Deep sleep: Wokwi resets the ESP32 and loses RTC_DATA_ATTR on deep sleep (the
-  trial restarts at slot 1), so USE_DEEP_SLEEP stays false. Instead the Wi-Fi
-  link is dropped at the end of every slot, so each cycle reconnects (~2-3 s)
-  and the 30 s Wi-Fi timeout path is actually exercised.
-*/
-
 #include <WiFi.h>
 #include <HTTPClient.h>
 #include <WiFiClientSecure.h>
